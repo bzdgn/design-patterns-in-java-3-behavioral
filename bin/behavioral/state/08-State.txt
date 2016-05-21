@@ -1,0 +1,69 @@
+CONCEPTS;
+*********
+
+- Localize state behaviour
+- State Object
+- Separates what from where
+- OCP : Open-Close Principle
+	: The class is closed for changes but the states are open to extendsions.
+- Examples: None!
+
+DESIGN;
+*******
+             
+********************************      ********************************
+*            Context           *      *             State            *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*----->*______________________________*
+*                              *      *                              *
+*           request()          *      *            handle()          *
+*                              *      *                              *
+********************************      ********************************
+                                                      ^
+                                                      |
+                                                      |
+                                   ___________________|_________________
+                                  |                                     |
+                                  |                                     |
+                   ********************************      ********************************
+                   *        ConcreteStateA        *      *        ConcreteStateB        *
+                   *______________________________*      *______________________________*
+                   *                              *      *                              *
+                   *______________________________*      *______________________________*
+                   *                              *      *                              *
+                   *            handle()          *      *            handle()          *
+                   *                              *      *                              *
+                   ********************************      ********************************
+
+
+- Abstract Class / Interface
+- Class-based
+- Context unaware
+- Context, State, ConcreteState
+
+Pitfalls
+********
+- Know your States
+- More classes
+- Keep logic out of Context
+- State change triggers
+
+State vs. Strategy
+******************
+	State;
+	- Interface based
+	- Transitions
+	- Class per State
+	
+	Strategy;
+	- Interface based
+	- Algorithms are Independent
+	- Class per Algorithm
+	
+Summary
+*******
+- Simplifies cyclomatic complexity
+- Adding additional states made easier
+- More classes (Open-Close Principle)
+- Similiar implementation to Strategy Pattern

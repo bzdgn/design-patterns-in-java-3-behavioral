@@ -1,0 +1,57 @@
+CONCEPTS;
+*********
+
+- Used to define an algorithm that allows sub-classes to redefine parts of the algorithm without changing
+	its structure.
+- Code reuse
+- Common in libraries / frameworks
+- IoC containers use this to allow pluggable components inside their frameworks all the time. IoC frameworks
+	really help keep this pattern mainstream (in Bryan's opinion)
+- Algorithm emphasis : The Template method enables us to force an algorithm but allows pieces to be
+	configured by the user.
+- Examples: java.util.Collection#sort() , java.util.AbstractList#indexOf()
+
+DESIGN;
+*******
+             
+********************************      ********************************
+*         AbstractBase         *      *         ConcreteClass        *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*<-----*______________________________*
+*                              *      *                              *
+*      + templateMethod()      *      *                              *
+*         # methodOne()        *      *         # methodOne()        *
+*         # methodTwo()        *      *         # methodTwo()        *
+*                              *      *                              *
+********************************      ********************************
+
+- Abstract Base class
+- Base calls Child
+- Hooks
+- Operations
+- AbstractBase, ConcreteClass
+
+Pitfalls
+********
+- Restrict access to certain methods correctly
+- Confusing class hierarchy
+- Difficult program flow
+
+Template vs. Strategy
+*********************
+	Template;
+	- Same algorithm but different implementations
+	- Always Class based
+	- Chosen at Compile Time
+	
+	Strategy;
+	- Algorithm per Strategy
+	- Interface based
+	- Strategy choosen at Run time
+	
+Summary
+*******
+- It gurantees Algorithm adherence
+- IoC (don't call us we call you)
+- Easier implementation

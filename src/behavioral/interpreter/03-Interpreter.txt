@@ -1,0 +1,90 @@
+CONCEPTS;
+*********
+
+- Represents grammar
+	: Parseing
+- Interpret a sentence
+- Map a domain
+	: Enables to map out a domain specific language
+	: SQL, XML parser....
+- AST
+	: Abstract Syntax Tre
+- Examples: java.util.Pattern
+          : java.text.Format
+
+DESIGN;
+*******
+                                      ********************************
+                                      *            Context           *
+                                      *______________________________*
+               ---------------------->*                              *
+               |                      *                              *
+               |                      *                              *
+               |                      *                              *
+               |                      *                              *
+               |                      ********************************
+               |
+               |
+               |
+********************************      ********************************
+*            Client            *      *      AbstractExpression      *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*                              *----->*                              *<------------------------|
+*                              *      *      interpret(Context)      *                         |
+*                              *      *                              *                         |
+*                              *      *                              *                         |
+********************************      ********************************                         |
+                                                      ^                                        |
+                                                      |                                        |
+                                   ___________________|__________________                      |
+                                  |                                      |                     |
+                                  |                                      |                     |
+                   ********************************       ********************************     |
+                   *      TerminalExpression      *       *    NonterminalExpression     *     |
+                   *______________________________*       *______________________________*     |
+                   *                              *       *                              *<----|
+                   *                              *       *                              *
+                   *      interpret(Context)      *       *      interpret(Context)      * 
+                   *                              *       *                              *
+                   *                              *       *                              *
+                   ********************************       ********************************
+
+- AbstractExpression
+	: Declares an interface for executing an operation
+- Interpret
+	: Operation is an interpret method
+- TerminalExpression
+	: Expression are then break into TerminalExpressions which represents a leaf of a tree
+	: Or an expression does not contain other expressions
+- NonterminalExpression
+	: If it does containt other expressions, then it's a Nonterminal Experssion
+	: NonterminalExpressions represent compound expressions and can typically call itself recursively
+	: until it finally represents a TerminalExpression or Multiple subexpressions
+- Context, AbstractExpression, TerminalExpression, NonterminalExpression, Client
+
+Pitfalls
+********
+- Complexity
+- Class per rule
+- Use of other patterns
+- Adding new variant
+
+Interpretter vs. Visitor
+************************
+	Interpretter;
+	- Access to properties
+	- Function as methods
+	- Adding new functionality changes every variant
+	
+	Visitor;
+	- Needs Observer functionality
+	- Functionality found in one place
+	- Adding new variant requires changing every visitor
+	
+Summary
+*******
+- Define a grammar
+- Rules or Validation
+- Special case pattern
+- Conside the Visitor

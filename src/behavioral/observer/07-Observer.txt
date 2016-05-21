@@ -1,0 +1,73 @@
+CONCEPTS;
+*********
+
+- One to many
+- Decoupled
+- Event Handling
+- Publisher / Subscriber ( Pub / Sub )
+	: Some people use the term Publisher/Subscriber interchangeably with the Observer Pattern
+	: but there's some debate here. The Observer Pattern is typically used in a synchronous
+	: fashion where the Pub/Sub model is typically used asynchronously.
+- M-V-C
+	: This pattern is most often used in MVC situations where the view is event driven.
+- Examples: java.util.Observer, java.util.EventListener, javax.jms.Topic
+
+DESIGN;
+*******
+             
+********************************      ********************************
+*            Subject           *      *           Observer           *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*----->*______________________________*
+*                              *      *                              *
+*        attach(Observer)      *      *                              *
+*        detach(Observer)      *      *            update()          *
+*            notify()          *      *                              *
+*                              *      *                              *
+********************************      *******************************
+                ^                                     ^
+                |                                     |
+                |                                     |
+                |                                     |
+********************************      *******************************
+*        ConcreteSubject       *      *       ConcreteObserver       *
+*______________________________*      *______________________________*
+*           - state            *      *       - observerState        *
+*______________________________*<-----*______________________________*
+*                              *      *                              *
+*           getState()         *      *            update()          *
+*           setState()         *      *                              *
+*                              *      *                              *
+********************************      ********************************
+
+- Subject
+- Observer
+- Observable
+- Views are Observers
+- Subject, Concrete Subject, Observer, Concrete Observer
+
+Pitfalls
+********
+- Unexpected updates
+- Large sized consequences
+- What changed
+- Debugging difficult
+
+Observer vs. Mediator
+*********************
+	Observer;
+	- One-to-Many
+	- Decoupled
+	- Broadcast Communication
+	
+	Mediator;
+	- One-to-one-to-Many
+	- Decoupled
+	- Complex Communication
+	
+Summary
+*******
+- Decoupled communication
+- Built-in functionality
+- Used with mediator

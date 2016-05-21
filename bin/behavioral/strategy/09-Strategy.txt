@@ -1,0 +1,69 @@
+CONCEPTS;
+*********
+
+- Used when you want to enable the Strategy or Algorithm to be selected at run time.
+- Eliminate conditional statements
+- Behaviour encapsulated in classes
+- Difficult to add new strategies
+- Client aware of strategies
+- Client chooses strategy
+- Examples: java.util.Comparator
+
+DESIGN;
+*******
+             
+********************************      ********************************
+*            Context           *      *           Strategy           *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*----->*______________________________*
+*                              *      *                              *
+*           request()          *      *           execute()          *
+*                              *      *                              *
+********************************      ********************************
+                                                      ^
+                                                      |
+                                                      |
+                                   ___________________|_________________
+                                  |                                     |
+                                  |                                     |
+                   ********************************      ********************************
+                   *       ConcreteStrategyA      *      *       ConcreteStrategyB      *
+                   *______________________________*      *______________________________*
+                   *                              *      *                              *
+                   *______________________________*      *______________________________*
+                   *                              *      *                              *
+                   *           execute()          *      *           execute()          *
+                   *                              *      *                              *
+                   ********************************      ********************************
+
+
+- Abstract base class
+- Concrete class per strategy
+- Removes if/else conditional
+- Strategies are independent
+- Context, Strategy, ConcreteStrategy
+
+Pitfalls
+********
+- Client aware of Strategies
+- Increased number of classes
+
+Strategy vs. State
+******************
+	Strategy;
+	- Interface based
+	- Algorithms are Independent
+	- Class per Algorithm
+	
+	State;
+	- Interface based
+	- Transitions
+	- Class per State
+	
+Summary
+*******
+- Externalizes algorithms
+- Client knows different Strategies
+- Class per Strategy
+- Reduces conditional statements

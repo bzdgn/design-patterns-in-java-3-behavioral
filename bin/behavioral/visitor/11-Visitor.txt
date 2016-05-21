@@ -1,0 +1,82 @@
+CONCEPTS;
+*********
+
+- A great way to separate an algorithm from an object structure.
+- Separate Algorithm from Object
+	: Key reason is typically that you are expecting a lot of change and adding new features,
+	: and can't modify the existing object structure that you've already created.
+- Adding new features
+- Maintain Open / Closed principle
+- Visitor changes
+	: The visitor class contains the changes and specializations rather than changing
+	: the original object
+- Examples: java.lang.model.element.Element, 
+          : java.lang.model.element.ElementVisitor
+
+DESIGN;
+*******
+             
+********************************      ********************************
+*            Visitor           *      *            Client            *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*<-----*______________________________*
+*                              *      *                              *
+*   + visit(ConcreteElement)   *      *                              *
+*                              *      *                              *
+********************************      ********************************
+                ^                                     ||
+                |                                     ||
+                |                                    \  /
+				|                                     \/
+********************************      ********************************
+*        ConcreteVisitor       *      *            Element           *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*______________________________*      *______________________________*
+*                              *      *                              *
+*   + visit(ConcreteElement)   *      *      + accept(Visitor)       *
+*                              *      *                              *
+********************************      ********************************
+                                                      ^
+                                                      |
+                                                      |
+                                      ********************************
+                                      *       ConcreteElement        *
+                                      *______________________________*
+                                      *                              *
+                                      *______________________________*
+                                      *                              *
+                                      *      + accept(Visitor)       *
+                                      *                              *
+                                      ********************************
+
+- Interface based
+- Visitor and Element
+- Elements have visit method
+- Visitor knows every Element
+- Visitor, ConcreteVisitor, Element, ConcreteElement
+
+Pitfalls
+********
+- Plan for adaptability
+- Indirection somewhat confusing
+- Adapter pattern
+
+Visitor vs. Iterator
+********************
+	Visitor;
+	- Interface based
+	- Externalized changes
+	- Multiple visitors
+	
+	Iterator;
+	- Interface based / Anonymous 
+	- Encapsulates
+	- Singlular
+	
+Summary
+*******
+- Expect changes
+- Minor complexity
+- Externalizes change

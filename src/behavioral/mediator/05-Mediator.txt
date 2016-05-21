@@ -1,0 +1,70 @@
+CONCEPTS;
+*********
+
+- Loose coupling between the objects
+- When dealing with well-defined, but complex set of objects that communicate in complex way
+- Reusable components
+- Hub / Router
+- Examples: java.util.Timer, java.lang.reflect.Method#invoke()
+
+DESIGN;
+*******
+********************************                        ********************************
+*           Mediator           *                        *          Colleague           *
+*______________________________*                        *______________________________*
+*                              *                        *                              *
+*______________________________*<-----------------------*______________________________*
+*                              *                        *                              *
+*                              *                        *                              *
+*                              *                        *                              *
+*                              *                        *                              *
+********************************                        ********************************
+               ^                                                ^               ^        
+               |                                      __________|               |____________               
+               |                                      |                                     |               
+********************************      ********************************      ********************************
+*       ConcreteMediator       *      *      ConcreteColleague1      *      *      ConcreteColleague2      *
+*______________________________*      *______________________________*      *______________________________*
+*                              *      *                              *      *                              *
+*______________________________*----->*______________________________*      *______________________________*
+*                              *      *                              *      *                              *
+*                              *      *                              *      *                              *
+*                              *      *                              *      *                              *
+*                              *      *                              *      *                              *
+********************************      ********************************      ********************************
+               |                                                                           ^
+               |                                                                           |
+               |                                                                           |
+               ------------------------------------------------------------------------------
+
+
+- Interface based
+- Concrete class
+- Minimizes inheritance
+- Mediator knows about colleagues
+- Mediator, ConcreteMediator
+
+Pitfalls
+********
+- Deity object
+- Limit subclassing
+- Over or with Command
+
+Mediator vs. Observer
+*********************
+	Mediator;
+	- Defines Interaction
+	- Object decoupling
+	- More specific
+	
+	Observer;
+	- One-to-Many
+	- Object decoupling
+	- More generic
+	
+Summary
+*******
+- Loose coupling
+- Simplified communication
+- Mediator complexity
+- Use with Command Pattern

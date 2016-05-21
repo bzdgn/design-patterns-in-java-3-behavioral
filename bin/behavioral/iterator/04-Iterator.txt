@@ -1,0 +1,69 @@
+CONCEPTS;
+*********
+
+- Traverse a container
+- Doesn't expose underlying structure
+- Decouples algorithms
+- Sequential
+- Examples: java.util.Iterator, java.util.Enumeration
+
+DESIGN;
+*******
+                                      ********************************      ********************************
+                                      *           Collection         *      *           Iterator           *
+                                      *______________________________*      *______________________________*
+               ---------------------->*                              *      *                              *
+               |                      *______________________________*      *______________________________*
+               |                      *                              *      *                              *
+               |                      *                              *      *           hasNext()          *
+               |                      *           iterator()         *      *            next()            *
+               |                      *                              *      *                              *
+               |                      ********************************      ********************************
+               |                                      ^                                     ^               
+               |                                      |                                     |               
+               |                                      |                                     |               
+********************************      ********************************      ********************************
+*            Client            *      *              List            *      *         ListIterator         *
+*______________________________*      *______________________________*      *______________________________*
+*                              *      *                              *      *                              *
+*                              *----->*______________________________*----->*______________________________*
+*                              *      *                              *      *                              *
+*                              *      *                              *      *           hasNext()          *
+*                              *      *           iterator()         *      *            next()            *
+********************************      *                              *      *                              *
+                                      ********************************      ********************************
+
+- Interface based
+- Factory Method based
+- Independent, but fail fast
+- Enumerators are fail safe
+- Iterator, ConcreteIterator
+
+Pitfalls
+********
+- No access to Index
+- Directional (base iteration in java is unidirectional) (also look bidirectional ListIterator)
+- Speed / Efficiency
+	: (slower on some scenarios then index, but on large collection of objects, iterator mostly fine)
+
+Iterator vs. For loop
+*********************
+	Iterator;
+	- Interface based
+	- Algorithm is removed
+	- No index
+	- Concurrent modification
+	
+	For loop;
+	- Traversal in client
+	- Exposes an index
+	- Doesn't change underlying object
+	- no foreach syntax
+	- Typically slower
+	
+Summary
+*******
+- Efficient way to traverse
+- Hides algorithm
+- Simplify client
+- Foreach (Java 1.5)

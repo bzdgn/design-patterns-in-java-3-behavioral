@@ -1,0 +1,68 @@
+CONCEPTS;
+*********
+
+- Decoupling of sender and receiver
+- Receiver contains reference to next receiver
+- Promotes loose coupling
+- No Handler - OK
+- Examples: java.util.logger#log(), javax.servlet.Filter#doFilter()
+          : Spring Security Filter Chain
+
+DESIGN;
+*******
+
+********************************                      ********************************
+*            Client            *--------------------->*            Handler           *
+*______________________________*                      *______________________________*
+*                              *                      *                              *
+*______________________________*                      *                              *--------------------------|
+*                              *                      *        handleRequest()       *                          |
+*                              *                      *                              *                          |
+*                              *                      *                              *                          |
+********************************                      ********************************                          |
+                                                            ^                 ^                                 |
+                                                            |                 |                                 |
+                                                            |                 |                                 |
+                                   ********************************       ********************************      |
+                                   *        ConcreteHandler1      *       *        ConcreteHandler2      *      |
+                                   *______________________________*       *______________________________*      |
+                                   *                              *       *                              *<-----|
+                                   *______________________________*       *______________________________*
+                                   *                              *       *                              *
+                                   *        handleRequest()       *       *        handleRequest()       *
+                                   *                              *       *                              *
+                                   ********************************       ********************************
+
+
+
+
+- Chain of receiver objects
+- Handler is Interface based
+- ConcreteHandler for each implementation
+- Each Handler has a reference to the next
+- Handler, ConcreteHandler
+
+Pitfalls
+********
+- Handling/Handler guarantee
+- Runtime configuration risk
+- Chain length/performance issues
+
+Chain Of Responsibility vs. Command
+***********************************
+	Chain Of Responsibility ;
+	- Handler is unique
+	- Successor
+	- Can utilize the Command
+	
+	Command;
+	- Command also unique
+	- Encapsulates function
+	- Reversible or Trackable in nature
+	
+Summary
+*******
+- Decouples sender and receiver
+- Runtime configuration
+- Hierarchical in nature
+- Careful with large chains

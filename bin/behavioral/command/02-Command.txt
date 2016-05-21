@@ -1,0 +1,84 @@
+CONCEPTS;
+*********
+
+- Encapsulates each request as an Object
+	: When working with a large system, business logic and functions can be very complex
+	: to maintain a debug if they're all just added in one single file.
+- Object-Oriented callback
+	: Each callback request is now Object-Oriented instead of just another method added
+	: inside of that growing class
+- Decouple sender from processor
+	: Maintain ability is also increased because the sender is Decoupled from the processor
+	: so that enables the system to be more flexible.
+- Often used for "undo" functionality
+	: The entire request should be contained within the command and then can be rollbacked.
+- Examples: java.lang.Runnable implementations
+          : javax.swing.Action implementations
+
+DESIGN;
+*******
+
+********************************      ********************************       ********************************
+*            Client            *      *           Invoker            *       *            Command           *
+*______________________________*      *______________________________*       *______________________________*
+*                              *      *                              *       *                              *
+*                              *      *                              *------>*                              *
+*                              *      *                              *       *           execute()          *
+*                              *      *                              *       *                              *
+*                              *      *                              *       *                              *
+********************************      ********************************       ********************************
+   |                   |                                                                     ^
+   |                   |                                                                     |
+   |                   |                                                                     |
+   |                   |              ********************************                       |
+   |                   |              *           Receiver           *                       |
+   |                   |------------->*______________________________*                       |
+   |                                  *                              *                       |
+   |                                  *                              *                       |
+   |                                  *            action()          *       ********************************
+   |                                  *                              *<------*        ConcreteCommand       *
+   |                                  *                              *       *______________________________*
+   |                                  ********************************       *           execute()          *
+   |                                                                         *______________________________*
+   |                                                                         *                              *
+   |------------------------------------------------------------------------>*             state            *
+                                                                             *                              *
+												                             ********************************
+																		 
+
+- Object per command
+	: Sometimes argued that it breaks the OO Design because there is an object per Command
+- Command Interface
+- Execute Method
+- 'Unexecute' or 'undo' method but not a must!
+- Reflection
+	: Advanced implementations of this pattern make use of Reflection to completely decouple the
+	: client from the receiver or processor using a callback
+- Command, Invoker, ConcreteCommand
+
+Pitfalls
+********
+- Dependence on other patterns
+- Multiple Commands
+- Make use of Memento Pattern
+- Prototype Pattern for copies
+
+Command vs. Strategy
+********************
+	Command;
+	- Object per command
+	- Class contains the 'what'
+	- Encapsulates action
+	
+	Strategy;
+	- Object per strategy
+	- Class contains the 'how'
+	- Encapsulates algorithm
+	
+Summary
+*******
+- After Singleton Pattern, Command Pattern is the second most used design pattern
+- Encapsulate each request as an object
+- Decouple sender from processor
+- Very few drawbacks
+- Often used for undo functionality

@@ -1,0 +1,55 @@
+CONCEPTS;
+*********
+
+- Restore Object to previous state
+- Externalize internal state
+	: We do need to be careful to not violate encapsulation while implementing this pattern
+- Undo / Rollback
+- Shields complex internals
+- Examples: java.util.Date, java.io.Serializable
+
+DESIGN;
+*******
+             
+********************************      ********************************      ********************************
+*          Originator          *      *            Memento           *      *           Caretaker          *
+*______________________________*      *______________________________*      *______________________________*
+*           - state            *      *           - state            *      *                              *
+*______________________________*----->*______________________________*<-----*______________________________*
+*                              *      *                              *      *                              *
+*         setMemento()         *      *           getState()         *      *                              *
+*        createMemento()       *      *           setState()         *      *                              *
+*                              *      *                              *      *                              *
+********************************      ********************************      ********************************
+
+- Class based
+- Originator
+- Caretaker
+- Memento
+- Magic Cookie
+- Originator, CareTaker, Memento
+
+Pitfalls
+********
+- Can be expensive
+- Deletes / history
+- Exposing information
+
+Memento vs. Command
+*******************
+	Memento;
+	- State captured
+	- Indepentend state
+	- Caretaker / History
+	
+	Command;
+	- Request captured
+	- Independent request
+	- History side benefit
+	
+Summary
+*******
+- Capture state
+- Can get heavy with history
+- Recreate state
+- Command
